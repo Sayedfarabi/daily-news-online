@@ -31,7 +31,7 @@ const displayNews = async (id) => {
             <div class="card-body">
                 <div>
                     <h5 class="card-title">${element.title}</h5>
-                    <p class="card-text">${element.details.length > 600 ? element.details.slice(0, 600) : element.details}</p>
+                    <p class="card-text">${element.details.length > 600 ? element.details.slice(0, 600) + "..." : element.details}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center mt-3">
                     <div class="d-flex">
@@ -53,8 +53,8 @@ const displayNews = async (id) => {
                         <i class="fa-regular fa-star-half-stroke"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <div>
-                    
+                    <div class="text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                    <i class="fa-solid fa-arrow-right"></i>
                     </div>
                 </div>
 
