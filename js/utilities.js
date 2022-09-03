@@ -63,9 +63,7 @@ const displayNews = async (id) => {
                         <i class="fa-regular fa-star-half-stroke"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <div>
-                        <button onclick = "displayModel(${element})" type="button" class="btn btn-primary" data-bs-toggle="modal"    data-bs-target="#exampleModal"> Details </button>
-                    </div>
+
                 </div>
 
 
@@ -79,48 +77,48 @@ const displayNews = async (id) => {
     });
 }
 
-const displayModal = (element) => {
-    const modalSection = document.getElementById("exampleModal");
-    modalSection.innerText = "";
-    const divModal = document.createElement("div");
-    divModal.classList.add("modal-dialog");
-    divModal.innerHTML = `
-        <div class="modal-content">
-            <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel">${element.title}</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table>
-                    <tr>
-                        <th class="fw-bold fs-4">Properties</th>
-                        <th class="fw-bold fs-4">Value</th>
-                    </tr>
-                    <tr>
-                        <td class="fw-bolder fs-5">Author Name :</td>
-                        <td>${element.author.name}</td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bolder fs-5">Published Date :</td>
-                        <td>${element.author.published_date}</td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bolder fs-5">Rating Number :</td>
-                        <td>${element.rating.number}</td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bolder fs-5">Total View :</td>
-                        <td>${element.total_view}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    `;
-    modalSection.appendChild(divModal);
-}
+// const displayModal = (element) => {
+//     const modalSection = document.getElementById("exampleModal");
+//     modalSection.innerText = "";
+//     const divModal = document.createElement("div");
+//     divModal.classList.add("modal-dialog");
+//     divModal.innerHTML = `
+//         <div class="modal-content">
+//             <div class="modal-header">
+//             <h3 class="modal-title" id="exampleModalLabel">${element.title}</h3>
+//             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//             </div>
+//             <div class="modal-body">
+//                 <table>
+//                     <tr>
+//                         <th class="fw-bold fs-4">Properties</th>
+//                         <th class="fw-bold fs-4">Value</th>
+//                     </tr>
+//                     <tr>
+//                         <td class="fw-bolder fs-5">Author Name :</td>
+//                         <td>${element.author.name}</td>
+//                     </tr>
+//                     <tr>
+//                         <td class="fw-bolder fs-5">Published Date :</td>
+//                         <td>${element.author.published_date}</td>
+//                     </tr>
+//                     <tr>
+//                         <td class="fw-bolder fs-5">Rating Number :</td>
+//                         <td>${element.rating.number}</td>
+//                     </tr>
+//                     <tr>
+//                         <td class="fw-bolder fs-5">Total View :</td>
+//                         <td>${element.total_view}</td>
+//                     </tr>
+//                 </table>
+//             </div>
+//             <div class="modal-footer">
+//                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+//             </div>
+//         </div>
+//     `;
+//     modalSection.appendChild(divModal);
+// }
 
 // Spinner ON Function 
 const spinnerON = () => {
