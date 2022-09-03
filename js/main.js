@@ -1,3 +1,5 @@
+// display Categories data 
+
 const displayCategories = async () => {
     const urlLink = `https://openapi.programming-hero.com/api/news/categories`
     const dataLoad = await catagoriesDataLoad(urlLink);
