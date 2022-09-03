@@ -15,8 +15,13 @@ const displayCategories = async () => {
     // console.log(uniqueCategoriesElement);
     const categoriesArea = document.getElementById("catagories-area");
     uniqueCategoriesElement.forEach(element => {
+        const categoryId = element.category_id;
+        // console.log(typeof (categoryId));
+        // const categoryIdNumber = parseFloat(categoryId);
         const li = document.createElement("li");
         li.innerText = element.category_name;
+        li.setAttribute("onclick", `displayNews(${categoryId})`);
+
         categoriesArea.appendChild(li);
 
 
