@@ -1,9 +1,14 @@
 // common data load function 
 
 const catagoriesDataLoad = async (urlLink) => {
-    const res = await fetch(urlLink);
-    const data = await res.json();
-    return data;
+    try {
+        const res = await fetch(urlLink);
+        const data = await res.json();
+        return data;
+    } catch (err) {
+        console.log(err)
+    }
+
 }
 
 // Display News function 
