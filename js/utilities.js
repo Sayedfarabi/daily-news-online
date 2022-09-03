@@ -1,8 +1,12 @@
+// common data load function 
+
 const catagoriesDataLoad = async (urlLink) => {
     const res = await fetch(urlLink);
     const data = await res.json();
     return data;
 }
+
+// Display News function 
 
 const displayNews = async (id) => {
     spinnerON();
@@ -66,11 +70,13 @@ const displayNews = async (id) => {
 
     });
 }
-
+// Spinner ON Function 
 const spinnerON = () => {
     const spinnerSection = document.getElementById("spinner-section");
     spinnerSection.classList.remove("d-none");
 }
+
+// Spinner OFF function
 const spinnerOff = () => {
     const spinnerSection = document.getElementById("spinner-section");
     spinnerSection.classList.add("d-none");
