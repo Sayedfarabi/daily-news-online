@@ -10,9 +10,6 @@ const displayCategories = async () => {
             uniqueCategoriesElement.push(element);
         }
     });
-
-    // uniqueCategoriesElement.unshift("Home");
-    // console.log(uniqueCategoriesElement);
     const categoriesArea = document.getElementById("catagories-area");
     uniqueCategoriesElement.forEach(element => {
         const categoryId = element.category_id;

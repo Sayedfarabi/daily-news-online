@@ -6,6 +6,7 @@ const catagoriesDataLoad = async (urlLink) => {
 }
 
 const displayNews = async (id) => {
+    spinnerON();
     const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
     const dataLoad = await catagoriesDataLoad(url);
     const newsSection = document.getElementById("news-section");
@@ -30,7 +31,7 @@ const displayNews = async (id) => {
             <div class="card-body">
                 <div>
                     <h5 class="card-title">${element.title}</h5>
-                    <p class="card-text">${element.details}</p>
+                    <p class="card-text">${element.details.length > 600 ? element.details.slice(0, 600) : element.details}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center mt-3">
                     <div class="d-flex">
@@ -52,8 +53,8 @@ const displayNews = async (id) => {
                         <i class="fa-regular fa-star-half-stroke"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <div class="text-primary">
-                        <i class="fa-solid fa-arrow-right"></i>
+                    <div>
+                    
                     </div>
                 </div>
 
@@ -62,6 +63,16 @@ const displayNews = async (id) => {
         </div>
         `
         newsSection.appendChild(div);
+        spinnerOff();
 
     });
+}
+
+const spinnerON = () => {
+    const spinnerSection = document.getElementById("spinner-section");
+    spinnerSection.classList.remove("d-none");
+}
+const spinnerOff = () => {
+    const spinnerSection = document.getElementById("spinner-section");
+    spinnerSection.classList.add("d-none");
 }
