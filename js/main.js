@@ -1,11 +1,9 @@
 const displayCategories = async () => {
     const urlLink = `https://openapi.programming-hero.com/api/news/categories`
     const dataLoad = await catagoriesDataLoad(urlLink);
-    // console.log(dataLoad.data.news_category);
     const newsCategory = dataLoad.data.news_category;
     const uniqueCategoriesElement = [];
     newsCategory.forEach(element => {
-        // const categories = element.category_name;
         if (uniqueCategoriesElement.includes(element.category_name) === false) {
             uniqueCategoriesElement.push(element);
         }
@@ -18,8 +16,6 @@ const displayCategories = async () => {
         li.innerText = categoryName;
         li.setAttribute("onclick", `displayNews(${categoryId})`);
         categoriesArea.appendChild(li);
-
-
     })
 
 
