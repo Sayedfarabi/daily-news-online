@@ -1,6 +1,6 @@
 // common data load function 
 
-const catagoriesDataLoad = async (urlLink) => {
+const apiDataLoad = async (urlLink) => {
     try {
         const res = await fetch(urlLink);
         const data = await res.json();
@@ -10,13 +10,12 @@ const catagoriesDataLoad = async (urlLink) => {
     }
 
 }
-
 // Display News function 
 
 const displayNews = async (id) => {
     spinnerON();
     const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
-    const dataLoad = await catagoriesDataLoad(url);
+    const dataLoad = await apiDataLoad(url);
     const newsSection = document.getElementById("news-section");
     newsSection.innerText = "";
     const foundSection = document.getElementById("found-section");
@@ -28,16 +27,18 @@ const displayNews = async (id) => {
     foundSection.appendChild(h5);
 
     elements.forEach(element => {
-
+        const uniqueId = element._id;
+        // console.log(element);
         const div = document.createElement("div");
         div.classList.add("row");
         div.classList.add("g-0");
-        div.classList.add("my-2");
+        div.classList.add("my-4");
+        div.classList.add("bg-light");
         div.innerHTML = `
-        <div class="col-md-3">
+        <div class=" p-sm-2 col-md-3 text-center">
             <img src="${element.thumbnail_url}" class="img-fluid rounded-start" alt="...">
         </div>
-        <div class="col-md-9">
+        <div class="px-sm-3 py-sm-2 col-md-9">
             <div class="card-body">
                 <div>
                     <h5 class="card-title">${element.title}</h5>
@@ -63,6 +64,9 @@ const displayNews = async (id) => {
                         <i class="fa-regular fa-star-half-stroke"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
+                    <div>
+                    <button onclick="displayModal('${uniqueId}')" type="button" class="btn btn-primary" data-bs-toggle="modal"            data-bs-target="#exampleModal">Details</button>
+                    </div>
 
                 </div>
 
@@ -77,48 +81,48 @@ const displayNews = async (id) => {
     });
 }
 
-// const displayModal = (element) => {
-//     const modalSection = document.getElementById("exampleModal");
-//     modalSection.innerText = "";
-//     const divModal = document.createElement("div");
-//     divModal.classList.add("modal-dialog");
-//     divModal.innerHTML = `
-//         <div class="modal-content">
-//             <div class="modal-header">
-//             <h3 class="modal-title" id="exampleModalLabel">${element.title}</h3>
-//             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-//             </div>
-//             <div class="modal-body">
-//                 <table>
-//                     <tr>
-//                         <th class="fw-bold fs-4">Properties</th>
-//                         <th class="fw-bold fs-4">Value</th>
-//                     </tr>
-//                     <tr>
-//                         <td class="fw-bolder fs-5">Author Name :</td>
-//                         <td>${element.author.name}</td>
-//                     </tr>
-//                     <tr>
-//                         <td class="fw-bolder fs-5">Published Date :</td>
-//                         <td>${element.author.published_date}</td>
-//                     </tr>
-//                     <tr>
-//                         <td class="fw-bolder fs-5">Rating Number :</td>
-//                         <td>${element.rating.number}</td>
-//                     </tr>
-//                     <tr>
-//                         <td class="fw-bolder fs-5">Total View :</td>
-//                         <td>${element.total_view}</td>
-//                     </tr>
-//                 </table>
-//             </div>
-//             <div class="modal-footer">
-//                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-//             </div>
-//         </div>
-//     `;
-//     modalSection.appendChild(divModal);
-// }
+const displayModal = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
+    spinnerON();
+    const dataLoad = await apiDataLoad(url);
+    const data = dataLoad.data[0];
+    console.log(data);
+    const modalTitle = document.getElementById("exampleModalLabel");
+    modalTitle.innerText = "";
+    modalTitle.innerText = `${data.title ? data.title : "No Title"}`;
+    const modalBody = document.getElementById("modal-body");
+    modalBody.innerText = "";
+    const table = document.createElement("table");
+    table.classList.add("table");
+    table.classList.add("table-bordered");
+    table.classList.add("text-muted");
+    table.classList.add("table-hover");
+    table.innerHTML = `
+                    <tr>
+                        <th class="fw-bold fs-3">Properties</th>
+                        <th class="fw-bold fs-3">Value</th>
+                    </tr>
+                    <tr>
+                        <td class="fw-bolder fs-5">Author Name :</td>
+                        <td>${data.author.name ? data.author.name : "No Name"}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bolder fs-5">Published Date :</td>
+                        <td>${data.author.published_date ? data.author.published_date : "No Date"}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bolder fs-5">Rating Number :</td>
+                        <td>${data.rating.number ? data.rating.number : "0.0"}</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bolder fs-5">Total View :</td>
+                        <td>${data.total_view ? data.total_view : "00"}</td>
+                    </tr>
+    `;
+    modalBody.appendChild(table);
+    spinnerOff();
+}
+
 
 // Spinner ON Function 
 const spinnerON = () => {
